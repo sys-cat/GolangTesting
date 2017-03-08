@@ -5,19 +5,25 @@ import (
 	"crypto/sha512"
 	"encoding/base64"
 	"fmt"
-	"net/url"
 )
 
-var key = "thish is secret key"
-var data = map[string]string{
-	"user":    "1",
-	"pass":    "password1234",
-	"payload": "anything payloads",
+type Payload struct {
+	User    int
+	Pass    string
+	Payload string
 }
+
+var key = "thish is secret key"
+var pay = Payload{
+	User:    1,
+	Pass:    "password",
+	Payload: "something payloads",
+}
+var data = fmt.Sprint(pay.User) + pay.Pass + pay.Payload
 
 func Run() string {
 	hash := hmac.New(sha512.New, []byte(key))
-	hash.Write([]byte(fmt.Sprint(data)))
-	signature := url.QueryEscape(base64.StdEncoding.EncodeToString(hash.Sum(nil)))
+	hash.Write([]byte(data))
+	signature := base64.StdEncoding.EncodeToString(hash.Sum(nil))
 	return signature
 }

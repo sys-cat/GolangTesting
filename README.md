@@ -1,19 +1,45 @@
 # GolangTesting
+
 something researches in golang.
 
-## Use HMAC using sha512
+## Connection Encrypto
 
-```
-go test -bench . -benchmem                                                                                                                                                                           ⮂
+### Use HMAC using sha512
+
+```bash
+go test -bench . -benchmem | prettybench
 testing: warning: no tests to run
-BenchmarkRun-8   	2000000000	         0.00 ns/op	       0 B/op	       0 allocs/op
 --- BENCH: BenchmarkRun-8
-	hmac_test.go:8: nDKKwCF36GeBHKQR%2BnQuoxQrCkO7zjwD%2Fpi%2FgYYSB5SgXlX8b9IMHXOnL091Hzn017jDZma1HdW4ebdiTKOb7Q%3D%3D
-	hmac_test.go:8: nDKKwCF36GeBHKQR%2BnQuoxQrCkO7zjwD%2Fpi%2FgYYSB5SgXlX8b9IMHXOnL091Hzn017jDZma1HdW4ebdiTKOb7Q%3D%3D
-	hmac_test.go:8: FUr2dGEGP4wsXadE%2FvdotYhv1CXaYcTaolWp%2BdWwsY%2FHqvSxe%2F51YqqIQ4xhTS9bLY6HVfLXDrEbmZ8WqWrFVA%3D%3D
-	hmac_test.go:8: FUr2dGEGP4wsXadE%2FvdotYhv1CXaYcTaolWp%2BdWwsY%2FHqvSxe%2F51YqqIQ4xhTS9bLY6HVfLXDrEbmZ8WqWrFVA%3D%3D
-	hmac_test.go:8: nDKKwCF36GeBHKQR%2BnQuoxQrCkO7zjwD%2Fpi%2FgYYSB5SgXlX8b9IMHXOnL091Hzn017jDZma1HdW4ebdiTKOb7Q%3D%3D
-	hmac_test.go:8: FUr2dGEGP4wsXadE%2FvdotYhv1CXaYcTaolWp%2BdWwsY%2FHqvSxe%2F51YqqIQ4xhTS9bLY6HVfLXDrEbmZ8WqWrFVA%3D%3D
+    hmac_test.go:9: LeebJMITvGM88uFxX4TzzfbM9HRIbcH5zsOKviznr97Pv+wmyd5sIyMKiqoa1dwFqIRrhcnykhxByV7TCjCw/g==
+    hmac_test.go:9: LeebJMITvGM88uFxX4TzzfbM9HRIbcH5zsOKviznr97Pv+wmyd5sIyMKiqoa1dwFqIRrhcnykhxByV7TCjCw/g==
+    hmac_test.go:9: LeebJMITvGM88uFxX4TzzfbM9HRIbcH5zsOKviznr97Pv+wmyd5sIyMKiqoa1dwFqIRrhcnykhxByV7TCjCw/g==
+    hmac_test.go:9: LeebJMITvGM88uFxX4TzzfbM9HRIbcH5zsOKviznr97Pv+wmyd5sIyMKiqoa1dwFqIRrhcnykhxByV7TCjCw/g==
+    hmac_test.go:9: LeebJMITvGM88uFxX4TzzfbM9HRIbcH5zsOKviznr97Pv+wmyd5sIyMKiqoa1dwFqIRrhcnykhxByV7TCjCw/g==
+    hmac_test.go:9: LeebJMITvGM88uFxX4TzzfbM9HRIbcH5zsOKviznr97Pv+wmyd5sIyMKiqoa1dwFqIRrhcnykhxByV7TCjCw/g==
 PASS
-ok  	github.com/sys-cat/GolangTesting/hmac	0.007s
+benchmark                      iter    time/iter   bytes alloc        allocs
+---------                      ----    ---------   -----------        ------
+BenchmarkRun-8           2000000000   0.00 ns/op        0 B/op   0 allocs/op
+BenchmarkRun100Times-8   2000000000   0.00 ns/op        0 B/op   0 allocs/op
+ok      github.com/sys-cat/GolangTesting/hmac    0.010s
+```
+
+### Use JWT using HS512
+
+```bash
+go test -bench . -benchmem | prettybench
+testing: warning: no tests to run
+--- BENCH: BenchmarkRun-8
+    jwt_test.go:6: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VyIjoxLCJQYXNzIjoicGFzc3dvcmQiLCJQYXlsb2FkIjoic29tZXRoaW5nIHBheWxvYWRzIn0.3gkqwMV0cGQ_y6IBXx2XKFij3-08sDdImguRMGUEBQDjfaWFAWLdrq-f5DFoUsNRBsHSJI2zSFVcjwsAb0GW5w
+    jwt_test.go:6: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VyIjoxLCJQYXNzIjoicGFzc3dvcmQiLCJQYXlsb2FkIjoic29tZXRoaW5nIHBheWxvYWRzIn0.3gkqwMV0cGQ_y6IBXx2XKFij3-08sDdImguRMGUEBQDjfaWFAWLdrq-f5DFoUsNRBsHSJI2zSFVcjwsAb0GW5w
+    jwt_test.go:6: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VyIjoxLCJQYXNzIjoicGFzc3dvcmQiLCJQYXlsb2FkIjoic29tZXRoaW5nIHBheWxvYWRzIn0.3gkqwMV0cGQ_y6IBXx2XKFij3-08sDdImguRMGUEBQDjfaWFAWLdrq-f5DFoUsNRBsHSJI2zSFVcjwsAb0GW5w
+    jwt_test.go:6: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VyIjoxLCJQYXNzIjoicGFzc3dvcmQiLCJQYXlsb2FkIjoic29tZXRoaW5nIHBheWxvYWRzIn0.3gkqwMV0cGQ_y6IBXx2XKFij3-08sDdImguRMGUEBQDjfaWFAWLdrq-f5DFoUsNRBsHSJI2zSFVcjwsAb0GW5w
+    jwt_test.go:6: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VyIjoxLCJQYXNzIjoicGFzc3dvcmQiLCJQYXlsb2FkIjoic29tZXRoaW5nIHBheWxvYWRzIn0.3gkqwMV0cGQ_y6IBXx2XKFij3-08sDdImguRMGUEBQDjfaWFAWLdrq-f5DFoUsNRBsHSJI2zSFVcjwsAb0GW5w
+    jwt_test.go:6: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VyIjoxLCJQYXNzIjoicGFzc3dvcmQiLCJQYXlsb2FkIjoic29tZXRoaW5nIHBheWxvYWRzIn0.3gkqwMV0cGQ_y6IBXx2XKFij3-08sDdImguRMGUEBQDjfaWFAWLdrq-f5DFoUsNRBsHSJI2zSFVcjwsAb0GW5w
+PASS
+benchmark                      iter    time/iter   bytes alloc        allocs
+---------                      ----    ---------   -----------        ------
+BenchmarkRun-8           2000000000   0.00 ns/op        0 B/op   0 allocs/op
+BenchmarkRun100Times-8   2000000000   0.00 ns/op        0 B/op   0 allocs/op
+ok      github.com/sys-cat/GolangTesting/jwt    0.075s
 ```
