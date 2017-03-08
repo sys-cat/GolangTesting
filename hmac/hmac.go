@@ -27,3 +27,13 @@ func Run() string {
 	signature := base64.StdEncoding.EncodeToString(hash.Sum(nil))
 	return signature
 }
+
+func Auth(sig string) bool {
+	hash := hmac.New(sha512.New, []byte(key))
+	hash.Write([]byte(data))
+	signature := base64.StdEncoding.EncodeToString(hash.Sum(nil))
+	if sig == signature {
+		return true
+	}
+	return false
+}
