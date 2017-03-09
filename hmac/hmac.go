@@ -4,7 +4,7 @@ import (
 	"crypto/hmac"
 	"crypto/sha512"
 	"encoding/base64"
-	"fmt"
+	"encoding/json"
 )
 
 type Payload struct {
@@ -19,7 +19,7 @@ var pay = Payload{
 	Pass:    "password",
 	Payload: "something payloads",
 }
-var data = fmt.Sprint(pay.User) + pay.Pass + pay.Payload
+var data, _ = json.Marshal(pay)
 
 func Run() string {
 	hash := hmac.New(sha512.New, []byte(key))
@@ -30,7 +30,7 @@ func Run() string {
 
 func Auth(sig string) bool {
 	hash := hmac.New(sha512.New, []byte(key))
-	hash.Write([]byte(data))
+	hash.Write(data)
 	signature := base64.StdEncoding.EncodeToString(hash.Sum(nil))
 	if sig == signature {
 		return true
