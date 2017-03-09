@@ -2,8 +2,11 @@ package jwt
 
 import "testing"
 
+var token map[string]string
+
 func BenchmarkRun(b *testing.B) {
-	b.Log(Run())
+	token = Run()
+	b.Log(token)
 }
 
 func BenchmarkRun100Times(b *testing.B) {
@@ -11,3 +14,13 @@ func BenchmarkRun100Times(b *testing.B) {
 		Run()
 	}
 }
+
+func BenchmarkDeRun(b *testing.B) {
+	b.Log(DeRun([]string{token["body"], token["verify"]}))
+}
+
+/*
+func BenchmarkDecodeOrigin(b *testing.B) {
+	b.Log(DecodeOrigin([]string{token["body"], token["verify"]}))
+}
+*/
