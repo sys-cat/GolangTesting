@@ -42,21 +42,18 @@ func Run() map[string]string {
 }
 
 func DeRun(data []string) (*jwt.Token, error, Payload) {
-	// header : eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9
+	// header : "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9"
 	// body : eyJVc2VyIjoiMSIsIlBhc3MiOiJwYXNzd29yZCIsIlBheWxvYWQiOiJzb21ldGhpbmcgcGF5bG9hZHMiLCJleHAiOjE0ODkwNDQ5NjcsImlzcyI6IkFub3RoZXJDb21wYW55In0
 	// verify : 6vXmzSIVtWy4XU4GIExR6IRLVO54Do8gNobCRLzZiuFknpKdRCDFconsTMYwMNIPPTF_OESYGp45jp-PEAmKJw
-	head := map[string]interface{}{
-		"type": "JWT",
-		"alg":  "HS512",
-	}
-	var err error
-	var head_json []byte
-	head_json, err = json.Marshal(head)
+	hjson, err := json.Marshal(map[string]interface{}{
+		"typ": "JWT",
+		"alg": jwt.SigningMethodHS512.Alg(),
+	})
 	if err != nil {
 		fmt.Println(err)
 	}
-	en_head := strings.TrimRight(base64.URLEncoding.EncodeToString(head_json), "=")
-	input := strings.Join([]string{en_head, data[0], data[1]}, ".")
+	head := strings.TrimRight(base64.URLEncoding.EncodeToString(hjson), "=")
+	input := strings.Join([]string{head, data[0], data[1]}, ".")
 	json := Payload{}
 	decode, err := jwt.ParseWithClaims(input, &json, func(token *jwt.Token) (interface{}, error) {
 		return []byte(key), nil
