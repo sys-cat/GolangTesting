@@ -1,0 +1,12 @@
+hash: 3b3f31ebd94d3282590a570c1c19699af316fa06ccfe810c67df6eaacd01d7bc
+updated: 2017-04-04T03:36:20.768224051+09:00
+imports:
+- name: github.com/dgrijalva/jwt-go
+  version: 2268707a8f0843315e2004ee4f1d021dc08baedf
+- name: go.uber.org/atomic
+  version: 3b8db5e93c4c02efbc313e17b2e796b0914a01fb
+- name: go.uber.org/zap
+  version: a2773be06b9ac7c318a3a105b5c310af5730c6b4
+  subpackages:
+  - zapcore
+testImports: []

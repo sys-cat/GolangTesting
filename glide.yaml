@@ -1,2 +1,8 @@
 package: github.com/sys-cat/GolangTesting
-import: []
+import:
+- package: go.uber.org/zap
+  version: ^1.1.0
+  subpackages:
+  - zapcore
+- package: go.uber.org/atomic
+  version: ^1.1.0
