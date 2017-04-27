@@ -6,3 +6,4 @@ import:
   - zapcore
 - package: go.uber.org/atomic
   version: ^1.1.0
+- package: github.com/disintegration/gift
